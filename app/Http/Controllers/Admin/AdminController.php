@@ -78,4 +78,10 @@ class AdminController extends Controller
 
         return response()->stream($callback, 200, $headers);
     }
+
+    public function Tambahdata()
+    {
+        return view('admin.tambahdata');
+    }
+
 }

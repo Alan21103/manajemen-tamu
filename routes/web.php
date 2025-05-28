@@ -50,4 +50,6 @@ Route::get('/dashboard', [AdminController::class, 'Dashboard'])->name('dashboard
 // Rute untuk ekspor data tamu
 Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.export');
 
+Route::get('/tambahdata', [AdminController::class, 'Tambahdata'])->name('admin.tambahdata');
+
 require __DIR__ . '/auth.php';

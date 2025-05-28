@@ -5,11 +5,21 @@
     </div>
     <nav class="flex-1">
         <ul class="space-y-4 text-gray-700">
-            <li class="bg-gray-200 rounded p-2">Dashboard</li>
             <li>
-                <a href="{{ route('admin.index') }}" class="hover:bg-gray-100 rounded p-2 block">Lihat Data</a>
+                <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'bg-gray-200' : 'hover:bg-gray-100' }} rounded p-2 block">
+                    Dashboard
+                </a>
             </li>
-            <li class="hover:bg-gray-100 rounded p-2">Tambah Data</li>
+            <li>
+                <a href="{{ route('admin.index') }}" class="{{ request()->routeIs('admin.index') ? 'bg-gray-200' : 'hover:bg-gray-100' }} rounded p-2 block">
+                    Lihat Data
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('tamu.create') }}" class="{{ request()->routeIs('tamu.create') ? 'bg-gray-200' : 'hover:bg-gray-100' }} rounded p-2 block">
+                    Tambah Data
+                </a>
+            </li>
         </ul>
     </nav>
     <a href="{{ route('welcome') }}" class="text-left mt-4 p-2 text-red-500 hover:underline">Log Out</a>

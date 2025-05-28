@@ -33,7 +33,14 @@ Route::get('/form', function () {
     return view('tamu.create');
 });
 
+Route::get('/tamu', [TamuController::class, 'index'])->name('tamu.index');
 Route::post('/tamu', [TamuController::class, 'store'])->name('tamu.store');
+Route::get('/tamu/{id}/edit', [TamuController::class, 'edit'])->name('tamu.edit');
+Route::delete('/tamu/{id}', [TamuController::class, 'destroy'])->name('tamu.destroy');
+Route::get('/tamu/create', [TamuController::class, 'create'])->name('tamu.create');
+
+
+
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 

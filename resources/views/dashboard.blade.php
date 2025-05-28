@@ -70,7 +70,9 @@
               <th>Tanggal</th>
               <th>Tujuan</th>
               <th>Jam</th>
-              <th>Action</th>
+              <th>No Telepon</th>
+              <th>Bidang</th>
+              <th>Rating</th>
             </tr>
           </thead>
           <tbody class="text-gray-700">
@@ -81,17 +83,22 @@
             <td>{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d M Y') }}</td>
             <td>{{ $item->tujuan_kunjungan }}</td>
             <td>{{ \Carbon\Carbon::parse($item->jam)->format('H:i A') }}</td>
-            <td>
-            @if($item->status == 'active')
-          <span class="bg-green-200 text-green-800 px-2 py-1 rounded text-xs">Active</span>
-        @else
-          <span class="bg-red-200 text-red-800 px-2 py-1 rounded text-xs">Inactive</span>
-        @endif
+            <td>{{ $item->no_telepon }}</td>
+            <td>{{ $item->bidang }}</td>
+            <td class="flex space-x-1">
+            @php $rating = $item->rating ?? 0; @endphp
+            @for ($i = 1; $i <= 5; $i++)
+            @if ($i <= $rating)
+          <span class="text-yellow-400 text-lg">★</span>
+          @else
+          <span class="text-gray-300 text-lg">★</span>
+          @endif
+        @endfor
             </td>
           </tr>
       @empty
         <tr>
-          <td colspan="6" class="py-4 text-center text-gray-500">Belum ada data tamu.</td>
+          <td colspan="8" class="py-4 text-center text-gray-500">Belum ada data tamu.</td>
         </tr>
       @endforelse
           </tbody>

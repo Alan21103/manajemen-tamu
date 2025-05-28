@@ -14,18 +14,21 @@ class TamuController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nama' => 'required|string|max:255',
+        $validated = $request->validate([
+            'nama' => 'required|string',
             'tanggal' => 'required|date',
-            'instansi' => 'required|string|max:255',
-            'no_telepon' => 'required|string|max:20',
+            'instansi' => 'required|string',
+            'no_telepon' => 'required|string',
             'tujuan_kunjungan' => 'required|string',
-            'bidang' => 'required|string|max:255',
+            'bidang' => 'required|array',
+            'rating' => 'nullable|integer|min:1|max:5',
         ]);
 
-        Tamu::create($request->all());
+        $bidang = $request->input('bidang', []);
+        $validated['bidang'] = implode(', ', array_filter($bidang)); 
 
-        return redirect()->back()->with('success', 'Terima kasih, data tamu berhasil dikirim.');
+        Tamu::create($validated);
+        return redirect()->back()->with('success', 'Data tamu berhasil dikirim.');
     }
 }
 

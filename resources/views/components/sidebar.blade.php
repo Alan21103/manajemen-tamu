@@ -12,5 +12,5 @@
             <li class="hover:bg-gray-100 rounded p-2">Tambah Data</li>
         </ul>
     </nav>
-    <button class="text-left mt-4 p-2 text-red-500 hover:underline">Log Out</button>
+    <a href="{{ route('welcome') }}" class="text-left mt-4 p-2 text-red-500 hover:underline">Log Out</a>
 </aside>

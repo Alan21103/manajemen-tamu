@@ -3,6 +3,13 @@
 <head>
     <title>Form Tamu</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script>
+        function toggleLainnyaInput() {
+            const lainnyaCheckbox = document.getElementById('lainnya-checkbox');
+            const input = document.getElementById('lainnya-input');
+            input.style.display = lainnyaCheckbox.checked ? 'block' : 'none';
+        }
+    </script>
 </head>
 <body class="bg-gray-100 p-6">
     <div class="max-w-xl mx-auto bg-white p-8 rounded shadow">
@@ -54,7 +61,23 @@
 
             <div>
                 <label class="block font-semibold">Bidang Tujuan</label>
-                <input type="text" name="bidang" class="w-full border border-gray-300 rounded p-2" required>
+                <div class="space-y-2 ml-2">
+                    <label><input type="checkbox" name="bidang[]" value="Kepala Perwakilan" class="mr-2">Kepala Perwakilan</label><br>
+                    <label><input type="checkbox" name="bidang[]" value="Bagian Umum" class="mr-2">Bagian Umum</label><br>
+                    <label><input type="checkbox" name="bidang[]" value="Sub Bagian" class="mr-2">Sub Bagian</label><br>
+                    <label><input type="checkbox" id="lainnya-checkbox" onclick="toggleLainnyaInput()">Lainnya</label>
+                    <input type="text" name="bidang[]" id="lainnya-input" placeholder="Tulis bidang lainnya..." class="w-full mt-2 border border-gray-300 rounded p-2" style="display: none;">
+                </div>
+            </div>
+
+            <div>
+                <label class="block font-semibold">Rating Kunjungan</label>
+                <select name="rating" class="w-full border border-gray-300 rounded p-2">
+                    <option value="">Pilih rating</option>
+                    @for ($i = 1; $i <= 5; $i++)
+                        <option value="{{ $i }}">{{ str_repeat('★', $i) }}</option>
+                    @endfor
+                </select>
             </div>
 
             <div class="text-right">

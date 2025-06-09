@@ -50,6 +50,7 @@ Route::get('/dashboard', [AdminController::class, 'Dashboard'])->name('dashboard
 
 // Rute untuk ekspor data tamu
 Route::get('/admin/export', [TamuExportController::class, 'export'])->name('admin.export')->middleware('auth');
+Route::get('/admin/export-page', [TamuExportController::class, 'exportPage'])->name('admin.export.page')->middleware('auth');
 
 Route::get('/tambahdata', [AdminController::class, 'Tambahdata'])->name('admin.tambahdata');
 

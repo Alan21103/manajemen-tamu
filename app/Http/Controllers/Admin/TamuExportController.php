@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Tamu;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -20,7 +22,15 @@ class TamuExportController extends Controller
         $sheet = $spreadsheet->getActiveSheet();
 
         $headers = [
-            'No', 'Nama', 'Instansi', 'Tanggal', 'Jam', 'Tujuan', 'No Telepon', 'Bidang', 'Rating'
+            'No',
+            'Nama',
+            'Instansi',
+            'Tanggal',
+            'Jam',
+            'Tujuan',
+            'No Telepon',
+            'Bidang',
+            'Rating'
         ];
 
         // Tulis header dengan style
@@ -76,5 +86,31 @@ class TamuExportController extends Controller
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
         exit;
+    }
+
+    public function exportPage(Request $request)
+    {
+        $bulan = $request->bulan;
+        $tahun = $request->tahun;
+
+        $query = Tamu::query();
+
+        if ($bulan && $tahun) {
+            $query->whereMonth('tanggal', $bulan)
+                ->whereYear('tanggal', $tahun);
+        } elseif ($bulan) {
+            $query->whereMonth('tanggal', $bulan);
+        } elseif ($tahun) {
+            $query->whereYear('tanggal', $tahun);
+        }
+
+        $tamu = $query->orderBy('tanggal', 'desc')->get();
+
+        $tahunList = Tamu::select(DB::raw('YEAR(tanggal) as tahun'))
+            ->distinct()
+            ->orderBy('tahun', 'desc')
+            ->pluck('tahun');
+
+        return view('admin.export-page', compact('tamu', 'tahunList'));
     }
 }

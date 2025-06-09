@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard BPKP</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="bg-gray-100 font-sans">
@@ -53,10 +54,66 @@
 
         <!-- Total Revenue Chart Placeholder -->
         <div class="bg-white p-6 rounded-xl shadow">
-          <h3 class="font-semibold mb-4">Total Revenue</h3>
-          <div class="w-full h-32 bg-gray-100 rounded flex items-center justify-center text-gray-400">[Chart
-            Placeholder]</div>
+          <h3 class="font-semibold mb-4">Jumlah Tamu per Bulan ({{ $tahun }})</h3>
+          <div class="relative w-full" style="height: 300px;">
+            <canvas id="tamuPerBulanChart"></canvas>
+          </div>
         </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+          const tamuData = @json($jumlahTamuPerBulan);
+
+          const ctx = document.getElementById('tamuPerBulanChart').getContext('2d');
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
+              datasets: [{
+                label: 'Jumlah Tamu',
+                data: tamuData,
+                backgroundColor: [
+                  '#60A5FA', '#38BDF8', '#0EA5E9', '#0284C7',
+                  '#2563EB', '#4F46E5', '#7C3AED', '#8B5CF6',
+                  '#A855F7', '#D946EF', '#EC4899', '#F43F5E'
+                ],
+                borderRadius: 8
+              }]
+            },
+            options: {
+              responsive: true,
+              aspectRatio: 2, // membuat proporsi horizontal-lebih panjang
+              plugins: {
+                legend: {
+                  display: false
+                },
+                tooltip: {
+                  callbacks: {
+                    label: function (context) {
+                      return `${context.parsed.y} tamu`;
+                    }
+                  }
+                }
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: {
+                    stepSize: 1
+                  },
+                  grid: {
+                    color: '#E5E7EB'
+                  }
+                },
+                x: {
+                  grid: {
+                    display: false
+                  }
+                }
+              }
+            }
+          });
+        </script>
       </div>
 
       <!-- Riwayat Tamu -->

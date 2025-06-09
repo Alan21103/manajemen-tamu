@@ -15,6 +15,11 @@
                     Lihat Data
                 </a>
             </li>
+             <li>
+                <a href="{{ route('admin.export.page') }}" class="{{ request()->routeIs('admin.export-page') ? 'bg-gray-200' : 'hover:bg-gray-100' }} rounded p-2 block">
+                    Export Data
+                </a>
+            </li>
            <li>
                 <a href="{{ route('admin.tambahdata') }}" class="hover:bg-gray-100 rounded p-2 block">Tambah Data</a>
            </li>

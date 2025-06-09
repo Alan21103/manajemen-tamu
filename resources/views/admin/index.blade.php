@@ -66,18 +66,22 @@
                                 @endif
                             @endfor
                         </td>
-                        <td class="py-2 px-4 flex space-x-3">
-                            <a href="{{ route('tamu.edit', $item->id) }}" class="text-blue-600 hover:text-blue-800" title="Edit">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <form action="{{ route('tamu.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Yakin hapus data ini?')" class="inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-600 hover:text-red-800" title="Delete">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </form>
-                        </td>
+                        <td class="py-2 px-4 flex space-x-2">
+    <a href="{{ route('tamu.edit', $item->id) }}" title="Edit"
+       class="p-2 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition duration-200">
+        <i class="fas fa-pen"></i>
+    </a>
+    <form action="{{ route('tamu.destroy', $item->id) }}" method="POST"
+          onsubmit="return confirm('Yakin hapus data ini?')" class="inline">
+        @csrf
+        @method('DELETE')
+        <button type="submit" title="Delete"
+                class="p-2 rounded-full bg-red-100 text-red-600 hover:bg-red-600 hover:text-white transition duration-200">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+    </form>
+</td>
+
                     </tr>
                     @empty
                     <tr>
@@ -90,32 +94,33 @@
             <!-- Pagination -->
             <div class="mt-4">
                 {{ $tamu->appends(request()->all())->links() }}
-            </div>
+            </div>  
         </div>
 
         <!-- Flow Chart + Filter -->
         <div class="bg-white rounded-lg shadow p-6 mt-8">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-lg font-bold">Grafik Jumlah Tamu</h3>
-                <form method="GET" action="{{ url()->current() }}" id="chartFilterForm" class="flex gap-2 items-center" autocomplete="off">
-                    <select name="year" class="border rounded p-2">
-                        <option value="">Pilih Tahun</option>
-                        @foreach ($years as $y)
-                            <option value="{{ $y }}" {{ ((int)request('year') === (int)$y) ? 'selected' : '' }}>{{ $y }}</option>
-                        @endforeach
-                    </select>
+                <form method="GET" action="{{ url()->current() }}" id="chartFilterForm" class="flex gap-2" autocomplete="off">
+    <select name="year" class="border rounded px-2 py-1">
+        <option value="">Pilih Tahun</option>
+        @foreach ($years as $y)
+            <option value="{{ $y }}" {{ ((int)request('year') === (int)$y) ? 'selected' : '' }}>{{ $y }}</option>
+        @endforeach
+    </select>
 
-                    <select name="month" class="border rounded p-2">
-                        <option value="">Pilih Bulan</option>
-                        @for ($m = 1; $m <= 12; $m++)
-                            <option value="{{ $m }}" {{ ((int)request('month') === $m) ? 'selected' : '' }}>
-                                {{ DateTime::createFromFormat('!m', $m)->format('F') }}
-                            </option>
-                        @endfor
-                    </select>
+    <select name="month" class="border rounded px-2 py-1">
+        <option value="">Pilih Bulan</option>
+        @for ($m = 1; $m <= 12; $m++)
+            <option value="{{ $m }}" {{ ((int)request('month') === $m) ? 'selected' : '' }}>
+                {{ DateTime::createFromFormat('!m', $m)->format('F') }}
+            </option>
+        @endfor
+    </select>
 
-                    <button type="submit" class="bg-blue-600 text-white px-4 rounded hover:bg-blue-700">Filter</button>
-                </form>
+    <button type="submit" class="bg-blue-600 text-white px-4 rounded hover:bg-blue-700">Filter</button>
+</form>
+
             </div>
 
             <canvas id="flowChart" style="max-height: 400px;"></canvas>
@@ -140,10 +145,13 @@
             datasets: [{
                 label: 'Jumlah Tamu',
                 data: data,
-                borderColor: 'orange',
-                backgroundColor: 'rgba(255, 165, 0, 0.2)',
-                fill: false,
-                tension: 0,
+                borderColor: '#003366',               // Warna biru BPKP solid
+                backgroundColor: 'rgba(0, 51, 102, 0.2)', // Fill transparan biru BPKP
+                fill: true,
+                tension: 0.4,                         // Garis bergelombang
+                pointBackgroundColor: '#003366',     // Titik data warna biru BPKP
+                pointRadius: 4,
+                pointHoverRadius: 6,
             }]
         },
         options: {
@@ -155,10 +163,21 @@
                         precision: 0
                     }
                 }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#003366',            // Label legend warna biru BPKP
+                        font: {
+                            weight: 'bold'
+                        }
+                    }
+                }
             }
         }
     });
 })();
 </script>
+
 
 @endsection

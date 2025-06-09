@@ -29,23 +29,27 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-6">
         <!-- Tamu Hari Ini -->
         <div class="bg-white p-6 rounded-xl shadow">
-          <h3 class="font-semibold mb-4">Tamu Hari ini</h3>
+          <h3 class="font-semibold mb-4">Tamu Hari Ini</h3>
           <div class="flex items-center space-x-6">
             <div class="text-center">
-              <div class="text-2xl font-bold">8</div>
+              <div class="text-2xl font-bold">
+                {{ $jumlahTamu ?? 0 }}
+              </div>
               <p class="text-gray-500 text-sm">Tamu</p>
             </div>
             <div class="text-center">
-              <div class="text-2xl font-bold">5</div>
+              <div class="text-2xl font-bold">
+                {{ $jumlahInstansi ?? 0 }}
+              </div>
               <p class="text-gray-500 text-sm">Instansi</p>
             </div>
             <button class="ml-auto text-blue-600 border border-blue-600 px-4 py-1 rounded hover:bg-blue-50"
               onclick="window.location='{{ route('admin.export') }}'">
               Export
             </button>
-
           </div>
         </div>
+
 
         <!-- Total Revenue Chart Placeholder -->
         <div class="bg-white p-6 rounded-xl shadow">

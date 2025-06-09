@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Tamu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class AdminController extends Controller
 {
@@ -22,8 +23,8 @@ class AdminController extends Controller
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('nama', 'like', "%{$search}%")
-                  ->orWhere('instansi', 'like', "%{$search}%")
-                  ->orWhere('tujuan_kunjungan', 'like', "%{$search}%");
+                    ->orWhere('instansi', 'like', "%{$search}%")
+                    ->orWhere('tujuan_kunjungan', 'like', "%{$search}%");
             });
         }
 
@@ -43,45 +44,55 @@ class AdminController extends Controller
     // Method untuk menampilkan dashboard, bisa disesuaikan sesuai kebutuhan
     public function dashboard()
     {
-        $tamu = Tamu::all(); // ambil semua data tamu
-        return view('dashboard', compact('tamu'));
+        $tamu = Tamu::all(); 
+        $today = Carbon::today();
+
+
+        $jumlahTamu = Tamu::whereDate('created_at', $today)->count();
+        $jumlahInstansi = Tamu::whereDate('created_at', $today)
+            ->distinct('instansi')
+            ->count('instansi');
+
+        return view('dashboard', compact('jumlahTamu', 'jumlahInstansi', 'tamu'));
+
     }
 
-    // Export data tamu ke CSV
-    public function export()
-    {
-        $tamu = Tamu::all();
+    // // Export data tamu ke CSV
+    // public function export()
+    // {
+    //     $tamu = Tamu::all();
 
-        $filename = 'data_tamu_' . now()->format('Ymd_His') . '.csv';
-        $headers = [
-            "Content-type" => "text/csv",
-            "Content-Disposition" => "attachment; filename=$filename",
-        ];
+    //     $filename = 'data_tamu_' . now()->format('Ymd_His') . '.csv';
+    //     $headers = [
+    //         "Content-type" => "text/csv",
+    //         "Content-Disposition" => "attachment; filename=$filename",
+    //     ];
 
-        $callback = function () use ($tamu) {
-            $file = fopen('php://output', 'w');
-            fputcsv($file, ['Nama', 'Instansi', 'Tanggal', 'Jam', 'Tujuan', 'Status']);
+    //     $callback = function () use ($tamu) {
+    //         $file = fopen('php://output', 'w');
+    //         fputcsv($file, ['Nama', 'Instansi', 'Tanggal', 'Jam', 'Tujuan', 'Status']);
 
-            foreach ($tamu as $item) {
-                fputcsv($file, [
-                    $item->nama,
-                    $item->instansi,
-                    $item->tanggal,
-                    $item->jam,
-                    $item->tujuan,
-                    $item->status
-                ]);
-            }
+    //         foreach ($tamu as $item) {
+    //             fputcsv($file, [
+    //                 $item->nama,
+    //                 $item->instansi,
+    //                 $item->tanggal,
+    //                 $item->jam,
+    //                 $item->tujuan,
+    //                 $item->status
+    //             ]);
+    //         }
 
-            fclose($file);
-        };
+    //         fclose($file);
+    //     };
 
-        return response()->stream($callback, 200, $headers);
-    }
+    //     return response()->stream($callback, 200, $headers);
+    // }
 
     public function Tambahdata()
     {
         return view('admin.tambahdata');
     }
+
 
 }

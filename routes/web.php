@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\TamuExportController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TamuController;
 use App\Http\Controllers\Admin\AdminController;
@@ -48,7 +49,7 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 Route::get('/dashboard', [AdminController::class, 'Dashboard'])->name('dashboard');
 
 // Rute untuk ekspor data tamu
-Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.export');
+Route::get('/admin/export', [TamuExportController::class, 'export'])->name('admin.export')->middleware('auth');
 
 Route::get('/tambahdata', [AdminController::class, 'Tambahdata'])->name('admin.tambahdata');
 

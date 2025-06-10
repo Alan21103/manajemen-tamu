@@ -31,7 +31,7 @@ class AdminController extends Controller
         $query->orderBy('tanggal', $sortOrder);
 
         // Pagination data tamu
-        $tamu = $query->paginate(10);
+        $tamu = $query->paginate(5);
 
         // Ambil filter tahun dan bulan, default tahun ini dan bulan null
         $year = $request->year ?? date('Y');

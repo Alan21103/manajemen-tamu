@@ -1,14 +1,14 @@
 <?php
 
+use App\Http\Controllers\LandingController;
+use App\Http\Controllers\Admin\AdminBeritaController;
 use App\Http\Controllers\Admin\TamuExportController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TamuController;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', [LandingController::class, 'index'])->name('welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -52,9 +52,15 @@ Route::get('/dashboard', [AdminController::class, 'Dashboard'])->name('dashboard
 Route::get('/admin/export', [TamuExportController::class, 'export'])->name('admin.export')->middleware('auth');
 Route::get('/admin/export-page', [TamuExportController::class, 'exportPage'])->name('admin.export.page')->middleware('auth');
 
+// Tambah Data
 Route::get('/tambahdata', [AdminController::class, 'Tambahdata'])->name('admin.tambahdata');
-
 Route::post('/admin/tambahdata', [AdminController::class, 'tambahdata'])->name('admin.tambahdata');
 Route::get('/admin/tambahdata', [AdminController::class, 'form'])->name('admin.form');
+
+//Konten
+Route::get('/konten', [AdminBeritaController::class, 'index'])->middleware('auth')->name('admin.konten');
+Route::post('/konten', [AdminBeritaController::class, 'tambah'])->middleware('auth')->name('admin.berita.tambah');
+Route::delete('/konten/{index}', [AdminBeritaController::class, 'hapus'])->middleware('auth')->name('admin.berita.hapus');
+
 
 require __DIR__ . '/auth.php';

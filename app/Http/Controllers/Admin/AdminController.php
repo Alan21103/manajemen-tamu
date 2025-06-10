@@ -18,15 +18,15 @@ class AdminController extends Controller
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
                 $q->where('nama', 'like', '%' . $request->search . '%')
-                ->orWhere('instansi', 'like', '%' . $request->search . '%')
-                ->orWhere('tujuan_kunjungan', 'like', '%' . $request->search . '%');
+                    ->orWhere('instansi', 'like', '%' . $request->search . '%')
+                    ->orWhere('tujuan_kunjungan', 'like', '%' . $request->search . '%');
             });
         }
 
         // Urutan tanggal
         $sortOrder = $request->filled('sort') && in_array(strtolower($request->sort), ['asc', 'desc'])
-                    ? $request->sort
-                    : 'desc';
+            ? $request->sort
+            : 'desc';
 
         $query->orderBy('tanggal', $sortOrder);
 
@@ -44,10 +44,10 @@ class AdminController extends Controller
             // Jika hanya tahun: summary per bulan
             for ($m = 1; $m <= 12; $m++) {
                 $count = Tamu::whereYear('tanggal', $year)
-                            ->whereMonth('tanggal', $m)
-                            ->count();
+                    ->whereMonth('tanggal', $m)
+                    ->count();
 
-                $chartData->push((object)[
+                $chartData->push((object) [
                     'label' => \Carbon\Carbon::create($year, $m, 1)->format('M'),
                     'jumlah' => $count,
                 ]);
@@ -58,11 +58,11 @@ class AdminController extends Controller
 
             for ($d = 1; $d <= $daysInMonth; $d++) {
                 $count = Tamu::whereYear('tanggal', $year)
-                            ->whereMonth('tanggal', $month)
-                            ->whereDay('tanggal', $d)
-                            ->count();
+                    ->whereMonth('tanggal', $month)
+                    ->whereDay('tanggal', $d)
+                    ->count();
 
-                $chartData->push((object)[
+                $chartData->push((object) [
                     'label' => $d,
                     'jumlah' => $count,
                 ]);
@@ -72,10 +72,10 @@ class AdminController extends Controller
             $yearNow = date('Y');
             for ($m = 1; $m <= 12; $m++) {
                 $count = Tamu::whereYear('tanggal', $yearNow)
-                            ->whereMonth('tanggal', $m)
-                            ->count();
+                    ->whereMonth('tanggal', $m)
+                    ->count();
 
-                $chartData->push((object)[
+                $chartData->push((object) [
                     'label' => \Carbon\Carbon::create($yearNow, $m, 1)->format('M'),
                     'jumlah' => $count,
                 ]);
@@ -83,9 +83,9 @@ class AdminController extends Controller
         }
 
         $years = Tamu::selectRaw('YEAR(tanggal) as year')
-                    ->distinct()
-                    ->orderBy('year', 'desc')
-                    ->pluck('year');
+            ->distinct()
+            ->orderBy('year', 'desc')
+            ->pluck('year');
 
         return view('admin.index', compact('tamu', 'chartData', 'years', 'year', 'month'));
     }
@@ -109,8 +109,8 @@ class AdminController extends Controller
 
         for ($bulan = 1; $bulan <= 12; $bulan++) {
             $jumlah = Tamu::whereYear('tanggal', $tahun)
-                          ->whereMonth('tanggal', $bulan)
-                          ->count();
+                ->whereMonth('tanggal', $bulan)
+                ->count();
             $jumlahTamuPerBulan[] = $jumlah;
         }
 
@@ -142,4 +142,29 @@ class AdminController extends Controller
         return view('admin.tambahdata-page');
     }
 
+    // public function tambahBerita(Request $request)
+    // {
+    //     $request->validate([
+    //         'judul' => 'required|string|max:255',
+    //         'gambar' => 'required|image|max:2048'
+    //     ]);
+
+    //     // Simpan gambar
+    //     $gambarPath = $request->file('gambar')->store('berita', 'public');
+
+    //     // Ambil berita lama
+    //     $path = resource_path('content/berita.json');
+    //     $berita = file_exists($path) ? json_decode(file_get_contents($path), true) : [];
+
+    //     // Tambahkan berita baru
+    //     $berita[] = [
+    //         'judul' => $request->judul,
+    //         'gambar' => basename($gambarPath)
+    //     ];
+
+    //     // Simpan kembali ke JSON
+    //     file_put_contents($path, json_encode($berita, JSON_PRETTY_PRINT));
+
+    //     return redirect()->back()->with('success', 'Berita berhasil ditambahkan!');
+    // }
 }

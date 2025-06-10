@@ -54,4 +54,7 @@ Route::get('/admin/export-page', [TamuExportController::class, 'exportPage'])->n
 
 Route::get('/tambahdata', [AdminController::class, 'Tambahdata'])->name('admin.tambahdata');
 
+Route::post('/admin/tambahdata', [AdminController::class, 'tambahdata'])->name('admin.tambahdata');
+Route::get('/admin/tambahdata', [AdminController::class, 'form'])->name('admin.form');
+
 require __DIR__ . '/auth.php';

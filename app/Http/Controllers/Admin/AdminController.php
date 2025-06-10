@@ -117,9 +117,29 @@ class AdminController extends Controller
         return view('dashboard', compact('jumlahTamu', 'jumlahInstansi', 'tamu', 'jumlahTamuPerBulan', 'tahun'));
     }
 
-    public function Tambahdata()
+    public function tambahdata(Request $request)
     {
-        return view('admin.tambahdata');
+        $validated = $request->validate([
+            'nama' => 'required|string',
+            'tanggal' => 'required|date',
+            'instansi' => 'required|string',
+            'no_telepon' => 'required|string',
+            'tujuan_kunjungan' => 'required|string',
+            'bidang' => 'required|array',
+            'rating' => 'nullable|integer|min:1|max:5',
+        ]);
+
+        $bidang = $request->input('bidang', []);
+        $validated['bidang'] = implode(', ', array_filter($bidang));
+
+        Tamu::create($validated);
+
+        return redirect()->back()->with('success', 'Data tamu berhasil ditambahkan.');
+    }
+
+    public function form()
+    {
+        return view('admin.tambahdata-page');
     }
 
 }

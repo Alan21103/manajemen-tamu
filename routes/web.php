@@ -29,6 +29,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/datatamu', [AdminController::class, 'index'])->name('admin.index');
 });
 
+Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
+    Route::get('/tamu/{id}/edit', [AdminController::class, 'edit'])->name('tamu.edit');
+    Route::put('/tamu/{id}', [AdminController::class, 'update'])->name('tamu.update');
+});
+
 
 Route::get('/form', function () {
     return view('tamu.create');
@@ -36,7 +41,8 @@ Route::get('/form', function () {
 
 Route::get('/tamu', [TamuController::class, 'index'])->name('tamu.index');
 Route::post('/tamu', [TamuController::class, 'store'])->name('tamu.store');
-Route::get('/tamu/{id}/edit', [TamuController::class, 'edit'])->name('tamu.edit');
+Route::get('/tamu/{id}/edit', [AdminController::class, 'edit'])->name('tamu.edit');
+Route::put('/tamu/{id}', [AdminController::class, 'update'])->name('tamu.update');
 Route::delete('/tamu/{id}', [AdminController::class, 'destroy'])->name('tamu.destroy');
 Route::get('/tamu/create', [TamuController::class, 'create'])->name('tamu.create');
 

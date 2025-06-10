@@ -64,10 +64,11 @@
                                     @endfor
                                 </td>
                                 <td class="py-2 px-4 flex space-x-2">
-                                    <a href="{{ route('tamu.edit', $item->id) }}" title="Edit"
+                                   <a href="{{ route('admin.tamu.edit', $item->id) }}" title="Edit"
                                         class="p-2 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition duration-200">
                                         <i class="fas fa-pen"></i>
                                     </a>
+
                                    <form action="{{ route('tamu.destroy', $item->id) }}" method="POST" class="inline delete-form">
                                         @csrf
                                         @method('DELETE')

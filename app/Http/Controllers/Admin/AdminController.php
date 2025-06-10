@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Tamu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -148,5 +150,36 @@ class AdminController extends Controller
     $tamu->delete();
 
     return redirect()->route('admin.index')->with('success', 'Data berhasil dihapus.');
+    }
+
+    public function edit($id)
+    {
+    $tamu = Tamu::findOrFail($id);
+    return view('admin.edit', compact('tamu'));
+    }
+
+    public function update(Request $request, $id)
+    {
+    $validator = Validator::make($request->all(), [
+        'nama' => 'required|string',
+        'tanggal' => 'required|date',
+        'instansi' => 'required|string',
+        'no_telepon' => 'required|string',
+        'tujuan_kunjungan' => 'required|string',
+        'bidang' => 'required|array',
+        'rating' => 'nullable|integer|min:1|max:5',
+    ]);
+
+    if ($validator->fails()) {
+        return Redirect::back()->withErrors($validator)->withInput();
+    }
+
+    $tamu = Tamu::findOrFail($id);
+    $data = $request->all();
+    $data['bidang'] = implode(', ', array_filter($request->bidang));
+
+    $tamu->update($data);
+
+    return redirect()->route('admin.index')->with('success', 'Data tamu berhasil diperbarui.');
     }
 }

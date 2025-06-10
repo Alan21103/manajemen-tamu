@@ -142,29 +142,11 @@ class AdminController extends Controller
         return view('admin.tambahdata-page');
     }
 
-    // public function tambahBerita(Request $request)
-    // {
-    //     $request->validate([
-    //         'judul' => 'required|string|max:255',
-    //         'gambar' => 'required|image|max:2048'
-    //     ]);
+    public function destroy($id)
+    {
+    $tamu = Tamu::findOrFail($id);
+    $tamu->delete();
 
-    //     // Simpan gambar
-    //     $gambarPath = $request->file('gambar')->store('berita', 'public');
-
-    //     // Ambil berita lama
-    //     $path = resource_path('content/berita.json');
-    //     $berita = file_exists($path) ? json_decode(file_get_contents($path), true) : [];
-
-    //     // Tambahkan berita baru
-    //     $berita[] = [
-    //         'judul' => $request->judul,
-    //         'gambar' => basename($gambarPath)
-    //     ];
-
-    //     // Simpan kembali ke JSON
-    //     file_put_contents($path, json_encode($berita, JSON_PRETTY_PRINT));
-
-    //     return redirect()->back()->with('success', 'Berita berhasil ditambahkan!');
-    // }
+    return redirect()->route('admin.index')->with('success', 'Data berhasil dihapus.');
+    }
 }

@@ -3,6 +3,7 @@
 @section('content')
     <!-- CDN FontAwesome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <div class="flex min-h-screen bg-gray-100 font-sans">
         <!-- Sidebar -->
@@ -67,8 +68,7 @@
                                         class="p-2 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition duration-200">
                                         <i class="fas fa-pen"></i>
                                     </a>
-                                    <form action="{{ route('tamu.destroy', $item->id) }}" method="POST"
-                                        onsubmit="return confirm('Yakin hapus data ini?')" class="inline">
+                                   <form action="{{ route('tamu.destroy', $item->id) }}" method="POST" class="inline delete-form">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" title="Delete"
@@ -76,6 +76,7 @@
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>
+
                                 </td>
 
                             </tr>
@@ -192,5 +193,33 @@
         })();
     </script>
 
+    <!-- SweetAlert Delete -->
+     <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Tangkap semua form dengan class 'delete-form'
+        const deleteForms = document.querySelectorAll('.delete-form');
+
+        deleteForms.forEach(form => {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault(); // Mencegah submit langsung
+
+                Swal.fire({
+                    title: 'Yakin hapus data ini?',
+                    text: "Tindakan ini tidak bisa dibatalkan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#2563eb',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit(); // Submit form secara manual jika dikonfirmasi
+                    }
+                });
+            });
+        });
+    });
+</script>
 
 @endsection

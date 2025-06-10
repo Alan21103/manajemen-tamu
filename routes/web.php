@@ -37,7 +37,7 @@ Route::get('/form', function () {
 Route::get('/tamu', [TamuController::class, 'index'])->name('tamu.index');
 Route::post('/tamu', [TamuController::class, 'store'])->name('tamu.store');
 Route::get('/tamu/{id}/edit', [TamuController::class, 'edit'])->name('tamu.edit');
-Route::delete('/tamu/{id}', [TamuController::class, 'destroy'])->name('tamu.destroy');
+Route::delete('/tamu/{id}', [AdminController::class, 'destroy'])->name('tamu.destroy');
 Route::get('/tamu/create', [TamuController::class, 'create'])->name('tamu.create');
 
 

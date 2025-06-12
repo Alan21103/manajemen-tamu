@@ -41,7 +41,7 @@
 
     <!-- Home -->
     <main id="home" class="max-w-[1200px] mx-auto px-6 mt-12 md:mt-20 flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
-        <section class="max-w-md md:max-w-lg">
+<section class="max-w-md md:max-w-lg">
             <h1 class="font-extrabold text-4xl md:text-5xl leading-tight mb-6">
                 Selamat Datang<br>di BPKP DIY
             </h1>
@@ -58,35 +58,40 @@
             </a>
         </section>
         <section class="flex-shrink-0 max-w-[320px] md:max-w-[400px]">
-            <img src="/build/assets/img/ultahbpkp.png" alt="Logo 4 Akseleratif" class="w-full h-auto">
+            <img src="/build/assets/img/qrcode.png" alt="Logo 4 Akseleratif" class="w-full h-auto">
         </section>
+
     </main>
 
-    <!-- Kinerja Section -->
-    <section class="max-w-[1200px] mx-auto px-6 mt-32 md:mt-40 grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-12">
-        <div class="md:col-span-1 max-w-md">
-            <h2 class="font-extrabold text-2xl leading-tight mb-4">
-                Kinerja BPKP<br>Perwakilan BPKP Daerah<br>Istimewa Yogyakarta
-            </h2>
-            <p class="text-xs leading-relaxed">
-                Jumlah laporan per tahun yang dihasilkan oleh BPKP, termasuk oleh
-                Perwakilan BPKP D.I. Yogyakarta, bervariasi tergantung kegiatan,
-                cakupan wilayah, dan fokus tahunan, namun secara umum dapat mencakup
-            </p>
+<!-- Kinerja Section -->
+<section class="max-w-7xl mx-auto px-6 mt-32 md:mt-40 flex flex-col lg:flex-row lg:space-x-16">
+    <!-- Deskripsi -->
+    <div class="lg:w-1/2 max-w-xl mb-10 lg:mb-0">
+        <h2 class="font-extrabold text-3xl leading-tight mb-4">
+            Kinerja BPKP<br>Perwakilan BPKP Daerah<br>Istimewa Yogyakarta
+        </h2>
+        <p class="text-gray-800 text-[15px] leading-relaxed">
+            Jumlah laporan per tahun yang dihasilkan oleh BPKP, termasuk oleh Perwakilan BPKP D.I. Yogyakarta, 
+            bervariasi tergantung kegiatan, cakupan wilayah, dan fokus tahunan. Namun secara umum dapat mencakup:
+        </p>
+    </div>
+
+    <!-- Statistik Kinerja -->
+    <div class="lg:w-1/2 grid grid-cols-1 md:grid-cols-3 gap-6 text-center text-xs leading-tight">
+        <div class="flex flex-col items-center space-y-2 p-4">
+            <i class="far fa-chart-bar text-2xl text-blue-600"></i>
+            <p>Audit Kinerja dan Audit Dengan Tujuan Tertentu (ADTT):<br><strong>40–60 laporan</strong></p>
         </div>
-        <div class="flex flex-col items-center text-center space-y-2 text-xs leading-tight">
-            <i class="far fa-chart-bar text-2xl"></i>
-            <p>Audit Kinerja dan Audit Dengan Tujuan Tertentu (ADTT) 40–60 laporan</p>
+        <div class="flex flex-col items-center space-y-2 p-4">
+            <i class="fas fa-headset text-2xl text-green-600"></i>
+            <p>Pendampingan Penyusunan Laporan Keuangan dan Kinerja:<br><strong>± 20–30 output</strong></p>
         </div>
-        <div class="flex flex-col items-center text-center space-y-2 text-xs leading-tight">
-            <i class="fas fa-headset text-2xl"></i>
-            <p>Pendampingan Penyusunan Laporan Keuangan dan Kinerja ± 20–30 output laporan</p>
+        <div class="flex flex-col items-center space-y-2 p-4">
+            <i class="far fa-calendar-alt text-2xl text-orange-600"></i>
+            <p>Audit Dana Desa & Evaluasi Program Prioritas Daerah:<br><strong>± 10–15 laporan</strong></p>
         </div>
-        <div class="flex flex-col items-center text-center space-y-2 text-xs leading-tight">
-            <i class="far fa-calendar-alt text-2xl"></i>
-            <p>Audit Dana Desa dan Evaluasi Program Prioritas Daerah: ± 10–15 laporan</p>
-        </div>
-    </section>
+    </div>
+</section>
 
                 <!-- Struktur Organisasi Content -->
       <main id="struktur" class="flex flex-col md:flex-row items-center justify-center px-20 py-16 gap-20">

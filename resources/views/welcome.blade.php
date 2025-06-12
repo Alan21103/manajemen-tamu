@@ -101,7 +101,7 @@
     <div class="max-w-xl text-start">
         <h1 class="text-3xl font-bold mb-6 leading-tight text-gray-800">Struktur Organisasi</h1>
         <p class="text-gray-700 text-[15px] leading-relaxed">
-            Sebagai auditor internal pemerintah yang berkelas dunia dan trusted advisor bagi Presiden dalam mewujudkan visi Indonesia Maju, BPKP hadir mengawal akuntabilitas keuangan dan pembangunan nasional melalui pengawasan intern yang independen, profesional, dan berorientasi hasil, didukung sumber daya pengawasan yang unggul serta nilai-nilai PIONIR, demi terciptanya tata kelola pemerintahan yang bersih, transparan, dan berkeadilan bagi kesejahteraan rakyat.
+            Struktur organisasi BPKP dirancang secara strategis untuk mendukung pelaksanaan tugas dan fungsi pengawasan intern pemerintah secara efektif dan efisien. Dengan pembagian peran yang jelas mulai dari pimpinan hingga unit-unit kerja teknis, setiap bagian memiliki tanggung jawab spesifik dalam menjamin akuntabilitas keuangan negara dan pelaksanaan program pembangunan nasional. Struktur ini mencerminkan prinsip tata kelola yang baik (good governance), di mana sinergi antarunit menjadi kunci dalam mewujudkan pengawasan yang profesional, independen, dan berorientasi hasil, sesuai dengan nilai-nilai PIONIR yang dipegang teguh oleh BPKP.
         </p>
     </div>
 </main>

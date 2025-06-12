@@ -25,10 +25,10 @@
             </div>
         </div>
         <nav class="hidden md:flex space-x-8 text-sm font-normal text-gray-800">
-            <a href="#" class="hover:underline">Home</a>
-            <a href="#" class="hover:underline">Visi dan Misi</a>
-            <a href="#" class="hover:underline">Tentang Kami</a>
-            <a href="#" class="hover:underline">Berita</a>
+            <a href="#home" class="hover:underline">Home</a>
+            <a href="#struktur" class="hover:underline">Struktur Organisasi</a>
+            <a href="#tentang" class="hover:underline">Tentang Kami</a>
+            <a href="#berita" class="hover:underline">Berita</a>
         </nav>
         <div class="hidden md:flex space-x-4">
             <a href="{{ url('/login') }}">
@@ -39,8 +39,8 @@
         </div>
     </header>
 
-    <!-- Hero -->
-    <main class="max-w-[1200px] mx-auto px-6 mt-12 md:mt-20 flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
+    <!-- Home -->
+    <main id="home" class="max-w-[1200px] mx-auto px-6 mt-12 md:mt-20 flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
         <section class="max-w-md md:max-w-lg">
             <h1 class="font-extrabold text-4xl md:text-5xl leading-tight mb-6">
                 Selamat Datang<br>di BPKP DIY
@@ -88,20 +88,21 @@
         </div>
     </section>
 
-                <!-- Visi Misi Content -->
-        <main class="flex flex-col md:flex-row items-center justify-center px-20 py-16 gap-20">
-            <img src="https://storage.googleapis.com/a1aa/image/86bbacd5-4289-4085-9e21-2567bbb34872.jpg"
-                alt="Modern office building with glass windows and bpkp logo on the wall"
-                class="rounded-3xl w-full max-w-[400px] object-cover" height="400" width="400">
-            <div class="max-w-xl">
-                <h1 class="text-3xl font-bold mb-6 leading-tight text-gray-800">Visi Dan Misi</h1>
-                <p class="text-gray-700 text-[15px] leading-relaxed">
-                    Sebagai auditor internal pemerintah yang berkelas dunia dan trusted advisor bagi Presiden dalam mewujudkan visi Indonesia Maju, BPKP hadir mengawal akuntabilitas keuangan dan pembangunan nasional melalui pengawasan intern yang independen, profesional, dan berorientasi hasil, didukung sumber daya pengawasan yang unggul serta nilai-nilai PIONIR, demi terciptanya tata kelola pemerintahan yang bersih, transparan, dan berkeadilan bagi kesejahteraan rakyat.
-                </p>
-            </div>
-        </main>
+                <!-- Struktur Organisasi Content -->
+      <main id="struktur" class="flex flex-col md:flex-row items-center justify-center px-20 py-16 gap-20">
+    <img src="https://storage.googleapis.com/a1aa/image/86bbacd5-4289-4085-9e21-2567bbb34872.jpg"
+        alt="Modern office building with glass windows and bpkp logo on the wall"
+        class="rounded-3xl w-full max-w-[450px] object-cover transform md:-translate-x-12" height="400" width="400">
+    <div class="max-w-xl text-start">
+        <h1 class="text-3xl font-bold mb-6 leading-tight text-gray-800">Struktur Organisasi</h1>
+        <p class="text-gray-700 text-[15px] leading-relaxed">
+            Sebagai auditor internal pemerintah yang berkelas dunia dan trusted advisor bagi Presiden dalam mewujudkan visi Indonesia Maju, BPKP hadir mengawal akuntabilitas keuangan dan pembangunan nasional melalui pengawasan intern yang independen, profesional, dan berorientasi hasil, didukung sumber daya pengawasan yang unggul serta nilai-nilai PIONIR, demi terciptanya tata kelola pemerintahan yang bersih, transparan, dan berkeadilan bagi kesejahteraan rakyat.
+        </p>
+    </div>
+</main>
+
 <!-- Tentang Kami -->
-            <main class="max-w-7xl mx-auto px-6 pb-20">
+            <main id="tentang" class="max-w-7xl mx-auto px-6 pb-20">
                 <section class="flex flex-col lg:flex-row lg:items-start lg:space-x-16">
                     <article class="lg:w-1/2 max-w-xl">
                         <h1 class="text-3xl font-extrabold mb-6">Tentang Kami</h1>
@@ -136,7 +137,7 @@
             </main>
 
                     <!-- Berita Terkini -->
-        <main class="max-w-7xl mx-auto px-6 mt-12 mb-20">
+        <main id="berita" class="max-w-7xl mx-auto px-6 mt-12 mb-20">
     <h1 class="text-center text-2xl font-extrabold mb-10">Berita Terkini</h1>
 
     @if (!empty($berita) && is_array($berita) && count($berita) > 0)

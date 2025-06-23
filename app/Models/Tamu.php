@@ -23,5 +23,9 @@ class Tamu extends Model
         'rating',
     ];
 
+     public function rating()
+    {
+        return $this->hasOne(Rating::class, 'tamu_id');
+    }
     
 }

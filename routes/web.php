@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\Rating\RatingController;
 use App\Http\Controllers\Admin\AdminBeritaController;
 use App\Http\Controllers\Admin\TamuExportController;
 use App\Http\Controllers\ProfileController;
@@ -67,6 +68,11 @@ Route::get('/admin/tambahdata', [AdminController::class, 'form'])->name('admin.f
 Route::get('/konten', [AdminBeritaController::class, 'index'])->middleware('auth')->name('admin.konten');
 Route::post('/konten', [AdminBeritaController::class, 'tambah'])->middleware('auth')->name('admin.berita.tambah');
 Route::delete('/konten/{index}', [AdminBeritaController::class, 'hapus'])->middleware('auth')->name('admin.berita.hapus');
+
+//Rating
+Route::get('/rating/isi/{id}', [RatingController::class, 'form']);
+Route::post('/rating/form', [RatingController::class, 'submit'])->name('rating.submit');
+
 
 
 require __DIR__ . '/auth.php';

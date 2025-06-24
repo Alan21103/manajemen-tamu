@@ -14,9 +14,10 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
+        // Mulai query untuk model Tamu
         $query = Tamu::query();
 
-        // Filter pencarian
+        // Filter pencarian berdasarkan nama, instansi, dan tujuan kunjungan
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
                 $q->where('nama', 'like', '%' . $request->search . '%')
@@ -25,21 +26,21 @@ class AdminController extends Controller
             });
         }
 
-        // Urutan tanggal
+        // Urutan berdasarkan tanggal (default desc)
         $sortOrder = $request->filled('sort') && in_array(strtolower($request->sort), ['asc', 'desc'])
             ? $request->sort
             : 'desc';
 
         $query->orderBy('tanggal', $sortOrder);
 
-        // Pagination data tamu
-        $tamu = $query->paginate(5);
+        // Memuat data tamu dengan relasi rating
+        $tamu = $query->with('rating')->paginate(5); // Pagination 5 per halaman
 
         // Ambil filter tahun dan bulan, default tahun ini dan bulan null
         $year = $request->year ?? date('Y');
         $month = $request->month ?? null;
 
-        // Siapkan variabel chart data
+        // Siapkan variabel chart data untuk grafik
         $chartData = collect();
 
         if ($year && !$month) {
@@ -70,7 +71,7 @@ class AdminController extends Controller
                 ]);
             }
         } else {
-            // Jika tidak ada filter tahun, kamu bisa default ke tahun sekarang summary per bulan
+            // Jika tidak ada filter tahun, default ke tahun sekarang, summary per bulan
             $yearNow = date('Y');
             for ($m = 1; $m <= 12; $m++) {
                 $count = Tamu::whereYear('tanggal', $yearNow)
@@ -84,11 +85,13 @@ class AdminController extends Controller
             }
         }
 
+        // Ambil daftar tahun yang tersedia untuk filter
         $years = Tamu::selectRaw('YEAR(tanggal) as year')
             ->distinct()
             ->orderBy('year', 'desc')
             ->pluck('year');
 
+        // Mengembalikan view dengan data yang diperlukan
         return view('admin.index', compact('tamu', 'chartData', 'years', 'year', 'month'));
     }
 
@@ -96,11 +99,14 @@ class AdminController extends Controller
     // Method untuk menampilkan dashboard, bisa disesuaikan sesuai kebutuhan
     public function dashboard(Request $request)
     {
-        $tamu = Tamu::all();
-        $today = Carbon::today();
+        // Memuat relasi rating bersama data tamu
+        $tamu = Tamu::with('rating')->get(); // Mengambil semua data tamu dengan rating
 
+        // Mengambil jumlah tamu yang dibuat hari ini
+        $today = Carbon::today();
         $jumlahTamu = Tamu::whereDate('created_at', $today)->count();
 
+        // Menghitung jumlah instansi yang unik yang dibuat hari ini
         $jumlahInstansi = Tamu::whereDate('created_at', $today)
             ->distinct('instansi')
             ->count('instansi');
@@ -116,6 +122,7 @@ class AdminController extends Controller
             $jumlahTamuPerBulan[] = $jumlah;
         }
 
+        // Mengirim data ke view
         return view('dashboard', compact('jumlahTamu', 'jumlahInstansi', 'tamu', 'jumlahTamuPerBulan', 'tahun'));
     }
 
@@ -146,40 +153,40 @@ class AdminController extends Controller
 
     public function destroy($id)
     {
-    $tamu = Tamu::findOrFail($id);
-    $tamu->delete();
+        $tamu = Tamu::findOrFail($id);
+        $tamu->delete();
 
-    return redirect()->route('admin.index')->with('success', 'Data berhasil dihapus.');
+        return redirect()->route('admin.index')->with('success', 'Data berhasil dihapus.');
     }
 
     public function edit($id)
     {
-    $tamu = Tamu::findOrFail($id);
-    return view('admin.edit', compact('tamu'));
+        $tamu = Tamu::findOrFail($id);
+        return view('admin.edit', compact('tamu'));
     }
 
     public function update(Request $request, $id)
     {
-    $validator = Validator::make($request->all(), [
-        'nama' => 'required|string',
-        'tanggal' => 'required|date',
-        'instansi' => 'required|string',
-        'no_telepon' => 'required|string',
-        'tujuan_kunjungan' => 'required|string',
-        'bidang' => 'required|array',
-        'rating' => 'nullable|integer|min:1|max:5',
-    ]);
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required|string',
+            'tanggal' => 'required|date',
+            'instansi' => 'required|string',
+            'no_telepon' => 'required|string',
+            'tujuan_kunjungan' => 'required|string',
+            'bidang' => 'required|array',
+            'rating' => 'nullable|integer|min:1|max:5',
+        ]);
 
-    if ($validator->fails()) {
-        return Redirect::back()->withErrors($validator)->withInput();
-    }
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
 
-    $tamu = Tamu::findOrFail($id);
-    $data = $request->all();
-    $data['bidang'] = implode(', ', array_filter($request->bidang));
+        $tamu = Tamu::findOrFail($id);
+        $data = $request->all();
+        $data['bidang'] = implode(', ', array_filter($request->bidang));
 
-    $tamu->update($data);
+        $tamu->update($data);
 
-    return redirect()->route('admin.index')->with('success', 'Data tamu berhasil diperbarui.');
+        return redirect()->route('admin.index')->with('success', 'Data tamu berhasil diperbarui.');
     }
 }

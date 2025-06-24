@@ -21,7 +21,6 @@ class TamuController extends Controller
             'no_telepon' => 'required|string',
             'tujuan_kunjungan' => 'required|string',
             'bidang' => 'required|array',
-            'rating' => 'nullable|integer|min:1|max:5',
         ]);
 
         $bidang = $request->input('bidang', []);

@@ -9,7 +9,7 @@ class Rating extends Model
     protected $table = 'rating';
 
     protected $fillable = [
-        'tamu_id', 'nilai', 'komentar', 'diisi_pada',
+        'tamu_id', 'nilai', 'komentar',
     ];
 
     public function tamu()

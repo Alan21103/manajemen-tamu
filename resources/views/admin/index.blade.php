@@ -16,21 +16,38 @@
 
             <!-- Data Tamu -->
             <div class="bg-white rounded-lg shadow p-6">
+                <!-- Filter Section -->
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-lg font-bold">Riwayat Tamu</h2>
+
+                    <!-- Search and Filter Form -->
                     <form method="GET" action="{{ url()->current() }}" class="flex gap-2" id="filterForm">
+                        <!-- Search input -->
                         <input type="text" name="search" value="{{ request('search') }}" placeholder="Pencarian"
                             class="border rounded px-2 py-1" autocomplete="off" />
+
+                        <!-- Sort dropdown -->
                         <select name="sort" class="border rounded px-2 py-1">
                             <option value="desc" {{ request('sort') === 'desc' ? 'selected' : '' }}>Urutkan dari: Terbaru
                             </option>
                             <option value="asc" {{ request('sort') === 'asc' ? 'selected' : '' }}>Urutkan dari: Terlama
                             </option>
                         </select>
+
+                        <!-- Year Filter Dropdown -->
+                        <select name="year" class="border rounded px-2 py-1">
+                            <option value="">Pilih Tahun</option>
+                            @foreach($years as $year)
+                                <option value="{{ $year }}" {{ request('year') == $year ? 'selected' : '' }}>{{ $year }}</option>
+                            @endforeach
+                        </select>
+
+                        <!-- Submit Button -->
                         <button type="submit" class="bg-blue-600 text-white px-4 rounded hover:bg-blue-700">Filter</button>
                     </form>
                 </div>
 
+                <!-- Tamu Table -->
                 <table class="w-full text-sm text-left">
                     <thead class="text-gray-600 border-b">
                         <tr>
@@ -45,7 +62,7 @@
                         </tr>
                     </thead>
                     <tbody class="text-gray-700">
-                        @forelse($tamu as $item)
+                        @foreach ($tamu as $item)
                             <tr class="border-b hover:bg-gray-50">
                                 <td class="py-2">{{ $item->nama }}</td>
                                 <td>{{ $item->instansi }}</td>
@@ -53,23 +70,34 @@
                                 <td>{{ $item->tujuan_kunjungan }}</td>
                                 <td>{{ $item->no_telepon }}</td>
                                 <td>{{ $item->bidang }}</td>
-                                <td class="py-2">
-                                    @php $rating = $item->rating ?? 0; @endphp
+
+                                <td class="flex space-x-1">
+                                    @php
+                                        // Memastikan rating ada, jika tidak, set default 0
+                                        $rating = optional($item->rating)->nilai ?? 0;
+                                    @endphp
                                     @for ($i = 1; $i <= 5; $i++)
                                         @if ($i <= $rating)
                                             <span class="text-yellow-400 text-lg inline-block mr-1">★</span>
+                                            <!-- Bintang berwarna kuning -->
                                         @else
                                             <span class="text-gray-300 text-lg inline-block mr-1">★</span>
+                                            <!-- Bintang berwarna abu-abu -->
                                         @endif
                                     @endfor
                                 </td>
-                                <td class="py-2 px-4 flex space-x-2">
-                                   <a href="{{ route('admin.tamu.edit', $item->id) }}" title="Edit"
+
+                                <!-- Action column (Edit and Delete buttons) -->
+                                <td class="py-2 px-4 flex justify-start items-center space-x-2">
+                                    <!-- Edit button -->
+                                    <a href="{{ route('admin.tamu.edit', $item->id) }}" title="Edit"
                                         class="p-2 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition duration-200">
                                         <i class="fas fa-pen"></i>
                                     </a>
 
-                                   <form action="{{ route('tamu.destroy', $item->id) }}" method="POST" class="inline delete-form">
+                                    <!-- Delete button -->
+                                    <form action="{{ route('tamu.destroy', $item->id) }}" method="POST"
+                                        class="inline delete-form">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" title="Delete"
@@ -77,15 +105,9 @@
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>
-
                                 </td>
-
                             </tr>
-                        @empty
-                            <tr>
-                                <td colspan="8" class="py-4 text-center text-gray-500">Belum ada data tamu.</td>
-                            </tr>
-                        @endforelse
+                        @endforeach
                     </tbody>
                 </table>
 
@@ -195,32 +217,32 @@
     </script>
 
     <!-- SweetAlert Delete -->
-     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Tangkap semua form dengan class 'delete-form'
-        const deleteForms = document.querySelectorAll('.delete-form');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Tangkap semua form dengan class 'delete-form'
+            const deleteForms = document.querySelectorAll('.delete-form');
 
-        deleteForms.forEach(form => {
-            form.addEventListener('submit', function (e) {
-                e.preventDefault(); // Mencegah submit langsung
+            deleteForms.forEach(form => {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault(); // Mencegah submit langsung
 
-                Swal.fire({
-                    title: 'Yakin hapus data ini?',
-                    text: "Tindakan ini tidak bisa dibatalkan!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#2563eb',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, hapus!',
-                    cancelButtonText: 'Batal'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit(); // Submit form secara manual jika dikonfirmasi
-                    }
+                    Swal.fire({
+                        title: 'Yakin hapus data ini?',
+                        text: "Tindakan ini tidak bisa dibatalkan!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#2563eb',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit(); // Submit form secara manual jika dikonfirmasi
+                        }
+                    });
                 });
             });
         });
-    });
-</script>
+    </script>
 
 @endsection

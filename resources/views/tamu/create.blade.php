@@ -70,16 +70,6 @@
                 </div>
             </div>
 
-            <div>
-                <label class="block font-semibold">Rating Kunjungan</label>
-                <select name="rating" class="w-full border border-gray-300 rounded p-2">
-                    <option value="">Pilih rating</option>
-                    @for ($i = 1; $i <= 5; $i++)
-                        <option value="{{ $i }}">{{ str_repeat('★', $i) }}</option>
-                    @endfor
-                </select>
-            </div>
-
             <div class="text-right">
                 <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
                     Kirim

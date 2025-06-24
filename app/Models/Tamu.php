@@ -20,7 +20,6 @@ class Tamu extends Model
         'no_telepon',
         'tujuan_kunjungan',
         'bidang',
-        'rating',
     ];
 
      public function rating()

@@ -68,7 +68,7 @@
             {{-- Ganti <img> dengan QR code dinamis --}}
             <div class="w-full h-auto flex justify-center">
                 {{-- Hardcode sementara untuk pengujian --}}
-                {!! QrCode::size(400)->generate('http://10.69.3.141:8000/rating/isi/1') !!}
+                {!! QrCode::size(400)->generate('http://192.168.1.14:8000/rating/isi/1') !!}
             </div>
         </section>
 

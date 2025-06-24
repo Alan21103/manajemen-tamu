@@ -146,13 +146,18 @@
             <td>{{ \Carbon\Carbon::parse($item->jam)->format('H:i A') }}</td>
             <td>{{ $item->no_telepon }}</td>
             <td>{{ $item->bidang }}</td>
+
             <td class="flex space-x-1">
-            @php $rating = $item->rating ?? 0; @endphp
+            @php
+          // Mengambil nilai rating dari relasi rating, jika tidak ada rating beri nilai default 0
+          $rating = optional($item->rating)->nilai ?? 0;
+        @endphp
+
             @for ($i = 1; $i <= 5; $i++)
             @if ($i <= $rating)
-          <span class="text-yellow-400 text-lg">★</span>
+          <span class="text-yellow-400 text-lg">★</span> <!-- Bintang penuh -->
           @else
-          <span class="text-gray-300 text-lg">★</span>
+          <span class="text-gray-300 text-lg">★</span> <!-- Bintang kosong -->
           @endif
         @endfor
             </td>

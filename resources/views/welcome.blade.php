@@ -7,6 +7,11 @@
     <title>BPKP DIY</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    
+    <!-- Include both fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
@@ -47,7 +52,6 @@
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body class="bg-white text-gray-900">
@@ -100,7 +104,7 @@
 
 
 <!-- Struktur Organisasi Content -->
-    <main id="struktur" class="flex flex-col items-center justify-center px-6 py-16 slide-in-right mt-32"> <!-- Changed mt-24 to mt-32 here for more margin -->
+    <main id="struktur" class="flex flex-col items-center justify-center px-6 py-16 slide-in-right mt-32">
         <!-- Judul Besar -->
         <h1 class="font-[Lora] text-6xl md:text-7xl leading-tight mb-6 text-[#1B254B] font-semibold transform transition-all duration-300 ease-in-out hover:scale-105 hover:text-[#151f3a]">
             Struktur Organisasi
@@ -114,49 +118,64 @@
         </div>
     </main>
 
-<!-- Footer -->
-<footer class="bg-[#1B254B] text-gray-300 pt-12 pb-6 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-12">
-        <!-- Left section: Logo and contact information -->
-        <div class="flex flex-col items-center md:items-start space-y-6">
-            <img src="/build/assets/img/logo.png" alt="BPKP Logo" class="w-[80px] h-[40px] mb-4">
-            <p class="text-2xl font-semibold text-center md:text-left">Hadir Bermanfaat</p>
-            <h2 class="text-lg font-bold text-gray-300 text-center md:text-left">Perwakilan BPKP Daerah<br />Istimewa Yogyakarta</h2>
-            
-            <address class="text-sm text-gray-300 text-center md:text-left">
-                <p><i class="fas fa-map-marker-alt mr-2"></i> Jl. Parangtritis KM 5,5 Sewon, Kelurahan Bangunharjo, Kecamatan Sewon, Kabupaten Bantul, Daerah Istimewa Yogyakarta 55187</p>
-                <p><i class="fas fa-phone mr-2"></i> (0274) 385323, 445271, Fax. (0274) 415984</p>
-                <p><i class="fas fa-envelope mr-2"></i> <a href="mailto:yogya@bpkp.go.id" class="text-gray-300 hover:text-white">yogya@bpkp.go.id</a></p>
-            </address>
-        </div>
+<footer class="bg-[#1B254B] text-gray-300 py-10">
+  <div class="w-full flex flex-col md:flex-row justify-between items-start px-8 gap-8">
 
-        <!-- Right section: Social Media Links and Other Info -->
-        <div class="flex flex-col items-center space-y-6">
-            <h3 class="text-xl font-semibold text-gray-300">Sosial Media</h3>
-            <div class="flex space-x-6 text-gray-300 text-3xl">
-                <a href="#" class="hover:text-white" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="hover:text-white" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="hover:text-white" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="#" class="hover:text-white" aria-label="X"><i class="fab fa-x"></i></a>
-                <a href="#" class="hover:text-white" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-            </div>
-        </div>
+    <!-- KIRI -->
+    <div class="flex flex-col items-start text-left">
+      <img src="/build/assets/img/footer_logo.png" alt="BPKP Logo" class="w-[180px] mb-2" />
+      <p class="text-2xl text-white font-bold" style="font-family: 'Dancing Script', cursive;">
+        Hadir Bermanfaat
+      </p>
     </div>
 
-    <!-- Bottom section: Privacy Policy and Complaint Channel -->
-    <div class="text-center mt-6">
-        <a href="#" class="text-sm text-gray-300 hover:text-white">Kebijakan Privasi</a> | 
-        <a href="#" class="text-sm text-gray-300 hover:text-white">Kanal Pengaduan</a>
+    <!-- TENGAH -->
+    <div class="flex-1 flex flex-col items-start text-left">
+      <h2 class="text-2xl font-bold text-gray-300 mb-2">
+        Perwakilan BPKP Daerah Istimewa Yogyakarta
+      </h2>
+      <address class="not-italic text-sm text-gray-300 leading-relaxed space-y-2">
+        <p><i class="fas fa-map-marker-alt mr-2"></i>Jl. Parangtritis KM 5,5 Sewon, Bangunharjo, Sewon, Bantul, Yogyakarta 55187</p>
+        <p><i class="fas fa-phone mr-2"></i>087700606969</p>
+        <p><i class="fas fa-envelope mr-2"></i>
+          <a href="mailto:yogya@bpkp.go.id" class="hover:text-white">yogya@bpkp.go.id</a>
+        </p>
+        <p>
+          <a href="https://bpkp.go.id/id/unitKerja/25" class="flex items-center hover:text-white">
+            <i class="fas fa-globe mr-2"></i> Website BPKP
+          </a>
+        </p>
+      </address>
     </div>
 
-    <!-- Footer Bottom text -->
-    <p class="text-xs text-gray-400 text-center mt-6 max-w-7xl mx-auto px-6 leading-relaxed">
-        Media Komunikasi, Informasi, dan Pengetahuan Pengawas Internal Pemerintah<br />
-        © 2023 Badan Pengawasan Keuangan dan Pembangunan
-    </p>
+    <!-- KANAN -->
+    <div class="flex flex-col items-center text-center relative top-[-6px]">
+      <h2 class="text-2xl font-bold text-gray-300 mb-3">
+        Sosial Media
+      </h2>
+      <div class="flex space-x-4 justify-center">
+        <a href="https://www.instagram.com/bpkp_diy?igsh=MXZ2OGl4cmo2dnY1bg==" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="hover:text-white transition duration-300 ease-in-out">
+          <i class="fab fa-instagram fa-3x"></i>
+        </a>
+        <a href="https://www.youtube.com/@bpkpdiy891" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="hover:text-white transition duration-300 ease-in-out">
+          <i class="fab fa-youtube fa-3x"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Bottom text -->
+  <p class="text-xs text-gray-400 text-center mt-4 max-w-7xl mx-auto px-6 leading-relaxed">
+    Media Komunikasi, Informasi, dan Pengetahuan Pengawas Internal Pemerintah<br />
+    © 2023 Badan Pengawasan Keuangan dan Pembangunan
+  </p>
 </footer>
-
-
 
 
 </body>

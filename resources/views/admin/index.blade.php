@@ -58,7 +58,7 @@
                             <th>No Telepon</th>
                             <th>Bidang</th>
                             <th>Rating</th>
-                            <th class="py-2 px-4">Action</th>
+                           <th class="py-2 px-4 text-center w-28">Action</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-700">
@@ -87,24 +87,24 @@
                                     @endfor
                                 </td>
 
-                                <!-- Action column (Edit and Delete buttons) -->
-                                <td class="py-2 px-4 flex justify-start items-center space-x-2">
-                                    <!-- Edit button -->
-                                    <a href="{{ route('admin.tamu.edit', $item->id) }}" title="Edit"
-                                        class="p-2 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition duration-200">
-                                        <i class="fas fa-pen"></i>
-                                    </a>
+                              <td class="py-2 px-4">
+                                    <div class="flex justify-end items-center space-x-2">
+                                        <!-- Tombol Edit -->
+                                        <a href="{{ route('admin.tamu.edit', $item->id) }}" title="Edit"
+                                            class="p-2 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white transition duration-200">
+                                            <i class="fas fa-pen"></i>
+                                        </a>
 
-                                    <!-- Delete button -->
-                                    <form action="{{ route('tamu.destroy', $item->id) }}" method="POST"
-                                        class="inline delete-form">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" title="Delete"
-                                            class="p-2 rounded-full bg-red-100 text-red-600 hover:bg-red-600 hover:text-white transition duration-200">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </form>
+                                        <!-- Tombol Delete -->
+                                        <form action="{{ route('tamu.destroy', $item->id) }}" method="POST" class="inline delete-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" title="Delete"
+                                                class="p-2 rounded-full bg-red-100 text-red-600 hover:bg-red-600 hover:text-white transition duration-200">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -244,5 +244,4 @@
             });
         });
     </script>
-
 @endsection

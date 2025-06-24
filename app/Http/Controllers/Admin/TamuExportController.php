@@ -16,7 +16,8 @@ class TamuExportController extends Controller
 {
     public function export()
     {
-        $tamu = Tamu::all();
+        // Mengambil data tamu dengan relasi rating
+        $tamu = Tamu::with('rating')->get();
 
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
@@ -60,7 +61,10 @@ class TamuExportController extends Controller
             $sheet->setCellValue('F' . $row, $item->tujuan_kunjungan);
             $sheet->setCellValue('G' . $row, $item->no_telepon);
             $sheet->setCellValue('H' . $row, $item->bidang);
-            $sheet->setCellValue('I' . $row, $item->rating);
+
+            // Mengambil rating dari relasi
+            $sheet->setCellValue('I' . $row, optional($item->rating)->nilai); // Mengambil nilai rating dari relasi
+
             $row++;
         }
 
@@ -88,13 +92,15 @@ class TamuExportController extends Controller
         exit;
     }
 
+
     public function exportPage(Request $request)
     {
         $bulan = $request->bulan;
         $tahun = $request->tahun;
 
-        $query = Tamu::query();
+        $query = Tamu::with('rating'); // Memuat data rating bersama tamu
 
+        // Filter berdasarkan bulan dan tahun
         if ($bulan && $tahun) {
             $query->whereMonth('tanggal', $bulan)
                 ->whereYear('tanggal', $tahun);
@@ -104,13 +110,17 @@ class TamuExportController extends Controller
             $query->whereYear('tanggal', $tahun);
         }
 
-        $tamu = $query->orderBy('tanggal', 'desc')->get();
+        // Ambil data tamu dengan rating
+        $tamu = $query->with('rating')->orderBy('tanggal', 'desc')->paginate(10);
 
+        // Ambil daftar tahun untuk filter
         $tahunList = Tamu::select(DB::raw('YEAR(tanggal) as tahun'))
             ->distinct()
             ->orderBy('tahun', 'desc')
             ->pluck('tahun');
 
+        // Mengirim data ke view
         return view('admin.export-page', compact('tamu', 'tahunList'));
     }
+
 }

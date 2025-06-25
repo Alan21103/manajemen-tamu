@@ -100,7 +100,7 @@ class AdminController extends Controller
     public function dashboard(Request $request)
     {
         // Memuat relasi rating bersama data tamu
-        $tamu = Tamu::with('rating')->get(); // Mengambil semua data tamu dengan rating
+        $tamu = Tamu::with('rating')->paginate(10); // Menampilkan 10 data per halaman / Mengambil semua data tamu dengan rating
 
         // Mengambil jumlah tamu yang dibuat hari ini
         $today = Carbon::today();

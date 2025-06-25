@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Rating\RatingController;
-use App\Http\Controllers\Admin\AdminBeritaController;
+use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\TamuExportController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TamuController;
@@ -64,15 +64,18 @@ Route::get('/tambahdata', [AdminController::class, 'Tambahdata'])->name('admin.t
 Route::post('/admin/tambahdata', [AdminController::class, 'tambahdata'])->name('admin.tambahdata');
 Route::get('/admin/tambahdata', [AdminController::class, 'form'])->name('admin.form');
 
-//Konten
-Route::get('/konten', [AdminBeritaController::class, 'index'])->middleware('auth')->name('admin.konten');
-Route::post('/konten', [AdminBeritaController::class, 'tambah'])->middleware('auth')->name('admin.berita.tambah');
-Route::delete('/konten/{index}', [AdminBeritaController::class, 'hapus'])->middleware('auth')->name('admin.berita.hapus');
-
 //Rating
 Route::get('/rating/isi/{id}', [RatingController::class, 'form']);
 Route::post('/rating/form', [RatingController::class, 'submit'])->name('rating.submit');
 
+// Menampilkan Profil Admin
+Route::get('/admin/profile', [AdminProfileController::class, 'show'])->name('admin.profile');
+
+// Menampilkan Halaman Edit Profil Admin
+Route::get('/admin/profile/edit', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
+
+// Menyimpan Perubahan Profil Admin
+Route::put('/admin/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
 
 
 require __DIR__ . '/auth.php';

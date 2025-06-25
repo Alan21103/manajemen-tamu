@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
+use App\Models\Rating;
 
 class AdminController extends Controller
 {
@@ -135,13 +136,23 @@ class AdminController extends Controller
             'no_telepon' => 'required|string',
             'tujuan_kunjungan' => 'required|string',
             'bidang' => 'required|array',
-            'rating' => 'nullable|integer|min:1|max:5',
+            // 'rating' sudah dihapus dari sini
         ]);
 
+        // Menyimpan data tamu
         $bidang = $request->input('bidang', []);
         $validated['bidang'] = implode(', ', array_filter($bidang));
 
-        Tamu::create($validated);
+        // Create Tamu
+        $tamu = Tamu::create($validated);
+
+        // Menyimpan rating jika ada
+        if ($request->has('rating')) {
+            $rating = new Rating();
+            $rating->tamu_id = $tamu->id;
+            $rating->rating = $request->input('rating');
+            $rating->save();
+        }
 
         return redirect()->back()->with('success', 'Data tamu berhasil ditambahkan.');
     }

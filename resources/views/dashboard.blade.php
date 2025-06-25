@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
   <div class="flex h-screen">
 
     <!-- Sidebar -->

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
 <!-- Sidebar + Konten -->
 <div class="flex min-h-screen bg-gray-100 font-sans">
     <!-- Sidebar -->
@@ -13,7 +14,7 @@
 
         <div class="bg-white rounded-lg shadow p-6">
             <h2 class="text-2xl font-semibold mb-6">Tambah Data</h2>
-            <p class="mb-6 text-gray-500">Tolong isi form di bawah ini</p>
+            <p class="mb-6 text-gray-500">Form Tambah</p>
 
             @if(session('success'))
                 <div class="mb-4 text-green-600 font-medium">{{ session('success') }}</div>
@@ -81,14 +82,6 @@
                             </label>
                         @endforeach
                     </div>
-                </div>
-
-                <!-- Rating -->
-                <div>
-                    <label for="rating" class="block text-sm font-medium text-gray-700 mb-1">Rating (1-5)</label>
-                    <input type="number" name="rating" id="rating" value="{{ old('rating') }}"
-                        min="1" max="5" placeholder="Opsional"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:ring-2 focus:ring-purple-600 focus:outline-none">
                 </div>
 
                 <!-- Tombol -->

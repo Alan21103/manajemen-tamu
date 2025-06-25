@@ -25,11 +25,6 @@
                     Tambah Data
                 </a>
             </li>
-            <li>
-                <a href="{{ url('/konten') }}" class="{{ request()->is('konten') ? 'bg-gray-200' : 'hover:bg-gray-100' }} rounded p-2 block">
-                    Manajemen Konten
-                </a>
-            </li>
         </ul>
     </nav>
     <a href="{{ route('welcome') }}" class="text-left mt-4 p-2 text-red-500 hover:underline">Log Out</a>

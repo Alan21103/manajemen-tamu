@@ -43,7 +43,7 @@
                         </select>
 
                         <!-- Submit Button -->
-                        <button type="submit" class="bg-blue-600 text-white px-4 rounded hover:bg-blue-700">Filter</button>
+                        <button type="submit" class="bg-blue-900 text-white px-4 rounded hover:bg-blue-700">Filter</button>
                     </form>
                 </div>
 
@@ -155,7 +155,7 @@
                             @endfor
                         </select>
 
-                        <button type="submit" class="bg-blue-600 text-white px-4 rounded hover:bg-blue-700">Filter</button>
+                        <button type="submit" class="bg-blue-900 text-white px-4 rounded hover:bg-blue-700">Filter</button>
                     </form>
 
                 </div>

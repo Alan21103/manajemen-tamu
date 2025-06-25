@@ -26,9 +26,11 @@
                          alt="Admin Profile" class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg">
                     
                     <!-- Icon Button for Changing Profile Image -->
-                    <label for="profile_image_input" class="absolute bottom-0 right-0 bg-indigo-600 text-white p-2 rounded-full cursor-pointer hover:bg-indigo-700">
-                        <i class="fas fa-camera"></i> <!-- Camera Icon -->
-                    </label>
+<label for="profile_image_input" class="absolute bottom-0 right-0 bg-blue-900 text-white p-2 rounded-full cursor-pointer hover:bg-blue-700">
+    <i class="fas fa-camera text-1xl"></i> <!-- Camera Icon -->
+</label>
+
+
                     <input type="file" id="profile_image_input" name="profile_image" accept="image/*" class="hidden" onchange="previewImage(event)">
                 </div>
                 <div>
@@ -44,7 +46,7 @@
             <!-- Profile Info Section -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                 <div class="flex items-center space-x-4">
-                    <i class="fas fa-user-circle text-indigo-600 text-2xl"></i>
+                    <i class="fas fa-user-circle text-blue-900 text-2xl"></i>
                     <div>
                         <p class="font-medium text-gray-700">Nama</p>
                         <p class="text-gray-500">{{ auth()->user()->name }}</p>
@@ -52,7 +54,7 @@
                 </div>
 
                 <div class="flex items-center space-x-4">
-                    <i class="fas fa-envelope text-indigo-600 text-2xl"></i>
+                    <i class="fas fa-envelope text-blue-900 text-2xl"></i>
                     <div>
                         <p class="font-medium text-gray-700">Email</p>
                         <p class="text-gray-500">{{ auth()->user()->email }}</p>
@@ -60,15 +62,15 @@
                 </div>
 
                 <div class="flex items-center space-x-4">
-                    <i class="fas fa-cogs text-indigo-600 text-2xl"></i>
+                    <i class="fas fa-cogs text-blue-900 text-2xl"></i>
                     <div>
-                        <p class="font-medium text-gray-700">Jabatan</p>
+                        <p class="font-medium text-gray-700">Role</p>
                         <p class="text-gray-500">Admin</p>
                     </div>
                 </div>
 
                 <div class="flex items-center space-x-4">
-                    <i class="fas fa-calendar-alt text-indigo-600 text-2xl"></i>
+                    <i class="fas fa-calendar-alt text-blue-900 text-2xl"></i>
                     <div>
                         <p class="font-medium text-gray-700">Bergabung Sejak</p>
                         <p class="text-gray-500">{{ auth()->user()->created_at->format('d M Y') }}</p>

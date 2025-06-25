@@ -85,12 +85,14 @@
                 </div>
 
                 <!-- Tombol -->
-                <div>
-                    <button type="submit"
-                        class="w-full bg-indigo-900 text-white py-3 rounded-md hover:bg-indigo-800 transition duration-200">
-                        Tambah
-                    </button>
-                </div>
+<!-- Tombol -->
+<div class="flex justify-end">
+    <button type="submit"
+        class="bg-indigo-900 text-white py-2 px-6 rounded-md hover:bg-indigo-800 transition duration-200">
+        Tambah
+    </button>
+</div>
+
             </form>
         </div>
     </main>

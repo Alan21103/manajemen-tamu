@@ -14,99 +14,157 @@
     <div class="flex justify-between items-center mb-6">
       <h2 class="text-2xl font-semibold text-gray-800">Dashboard</h2>
       <div class="relative">
-      <button class="bg-indigo-600 text-white rounded-full p-2 flex items-center justify-center">
-        <i class="fas fa-bell"></i>
-      </button>
       </div>
     </div>
 
     <!-- Top Stats -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-6">
       <!-- Tamu Hari Ini -->
-      <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition-shadow duration-300">
-      <h3 class="font-semibold mb-4">Tamu Hari Ini</h3>
-      <div class="flex items-center space-x-6">
-        <div class="text-center">
-        <div class="text-2xl font-bold text-indigo-600">
-          {{ $jumlahTamu ?? 0 }}
+      <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition-shadow duration-300 flex flex-col">
+        <h3 class="font-semibold mb-4">Tamu Hari Ini</h3>
+        <div class="flex flex-col items-start space-y-6 flex-grow">
+          
+<!-- Data Tamu -->
+<div class="flex items-center space-x-6">
+  <!-- Ikon User (Tanpa Lingkaran) -->
+  <div class="text-blue-900 flex items-center justify-center text-6xl">
+    <i class="fas fa-user"></i>
+  </div>
+
+  <!-- Data Tamu -->
+  <div class="text-left">
+    <div class="text-2xl font-bold text-blue-900">
+      {{ $jumlahTamu ?? 0 }}
+    </div>
+    <p class="text-gray-500 text-sm">Tamu</p>
+    <p class="text-green-500 text-xs">{{ $persentaseTamu ?? '0' }}% dari kemarin</p>
+  </div>
+</div>
+
+
+          <!-- Data Instansi -->
+<div class="flex items-center space-x-6">
+  <!-- Ikon Instansi (Tanpa Lingkaran) -->
+  <div class="text-blue-900 flex items-center justify-center text-6xl">
+    <i class="fas fa-building"></i>
+  </div>
+
+  <!-- Data Instansi -->
+  <div class="text-left">
+    <div class="text-2xl font-bold text-blue-900">
+      {{ $jumlahInstansi ?? 0 }}
+    </div>
+    <p class="text-gray-500 text-sm">Instansi</p>
+    <p class="text-green-500 text-xs">{{ $persentaseInstansi ?? '0' }}% dari kemarin</p>
+  </div>
+</div>
+
         </div>
-        <p class="text-gray-500 text-sm">Tamu</p>
+
+        <!-- Tombol Export di bawah kanan -->
+        <div class="flex justify-end mt-6">
+<button class="text-white bg-blue-900 border border-blue-900 px-4 py-1 rounded transition-all duration-300"
+  onclick="window.location='{{ route('admin.export') }}'">
+  Export
+</button>
+
         </div>
-        <div class="text-center">
-        <div class="text-2xl font-bold text-indigo-600">
-          {{ $jumlahInstansi ?? 0 }}
-        </div>
-        <p class="text-gray-500 text-sm">Instansi</p>
-        </div>
-        <button class="ml-auto text-blue-600 border border-blue-600 px-4 py-1 rounded hover:bg-blue-50"
-        onclick="window.location='{{ route('admin.export') }}'">
-        Export
-        </button>
-      </div>
       </div>
 
       <!-- Total Revenue Chart Placeholder -->
-      <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition-shadow duration-300">
-      <h3 class="font-semibold mb-4">Jumlah Tamu per Bulan ({{ $tahun }})</h3>
-      <div class="relative w-full" style="height: 300px;">
-        <canvas id="tamuPerBulanChart"></canvas>
-      </div>
-      </div>
+<!-- Total Revenue Chart Placeholder -->
+<div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+  <h3 class="font-semibold mb-4 text-lg text-gray-800">Jumlah Tamu per Bulan ({{ $tahun }})</h3>
+  <div class="relative w-full" style="height: 300px;">
+    <canvas id="tamuPerBulanLineChart"></canvas>
+  </div>
+</div>
 
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      <script>
-      const tamuData = @json($jumlahTamuPerBulan);
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const tamuData = @json($jumlahTamuPerBulan);
 
-      const ctx = document.getElementById('tamuPerBulanChart').getContext('2d');
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
-        datasets: [{
-          label: 'Jumlah Tamu',
-          data: tamuData,
-          backgroundColor: [
-          '#60A5FA', '#38BDF8', '#0EA5E9', '#0284C7',
-          '#2563EB', '#4F46E5', '#7C3AED', '#8B5CF6',
-          '#A855F7', '#D946EF', '#EC4899', '#F43F5E'
-          ],
-          borderRadius: 8
-        }]
+  const ctx = document.getElementById('tamuPerBulanLineChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',  // Menggunakan grafik garis
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],  // Label untuk bulan
+      datasets: [{
+        label: 'Jumlah Tamu',
+        data: tamuData,
+        fill: true, // Mengisi area di bawah garis
+        backgroundColor: 'rgba(30, 64, 175, 0.2)', // Blue 900 dengan transparansi
+        borderColor: 'rgba(30, 64, 175, 1)', // Garis berwarna biru 900
+        borderWidth: 2,
+        tension: 0.4,  // Membuat garis lebih halus
+        pointRadius: 4, // Ukuran titik pada garis
+        pointBackgroundColor: 'rgba(30, 64, 175, 1)', // Titik warna biru 900
+        pointBorderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      aspectRatio: 2, // Membuat proporsi lebih lebar
+      plugins: {
+        legend: {
+          display: true,
+          labels: {
+            font: {
+              size: 14,
+              family: 'Inter', // Modern font
+            },
+            color: '#4B5563',
+          }
         },
-        options: {
-        responsive: true,
-        aspectRatio: 2, // membuat proporsi horizontal-lebih panjang
-        plugins: {
-          legend: {
-          display: false
+        tooltip: {
+          backgroundColor: '#1E40AF', // Warna tooltip biru 900
+          titleFont: {
+            size: 16
           },
-          tooltip: {
+          bodyFont: {
+            size: 14
+          },
+          cornerRadius: 6,
+          displayColors: false, // Hapus warna kotak pada tooltip
           callbacks: {
-            label: function (context) {
-            return `${context.parsed.y} tamu`;
+            label: function(context) {
+              return `${context.raw} tamu`;
             }
           }
-          }
-        },
-        scales: {
-          y: {
+        }
+      },
+      scales: {
+        y: {
           beginAtZero: true,
           ticks: {
-            stepSize: 1
+            stepSize: 1,
+            font: {
+              size: 14
+            },
+            color: '#4B5563', // Teks sumbu Y berwarna lebih gelap
           },
           grid: {
-            color: '#E5E7EB'
+            color: '#E5E7EB', // Grid warna abu-abu muda
+            lineWidth: 1
           }
-          },
-          x: {
+        },
+        x: {
           grid: {
-            display: false
-          }
+            display: false // Menghilangkan garis grid pada sumbu X
+          },
+          ticks: {
+            font: {
+              size: 14
+            },
+            color: '#4B5563' // Teks sumbu X berwarna lebih gelap
           }
         }
-        }
-      });
-      </script>
+      }
+    }
+  });
+</script>
+
+
     </div>
 
     <!-- Riwayat Tamu -->
@@ -184,4 +242,3 @@
     </main>
   </div>
 @endsection
-

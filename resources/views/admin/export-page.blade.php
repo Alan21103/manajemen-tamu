@@ -44,14 +44,15 @@
                     </div>
 
                     <div class="w-full sm:w-auto">
-                        <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition duration-300 ease-in-out transform hover:scale-105">
-                            Filter
-                        </button>
+<button class="bg-blue-900 text-white px-6 py-2 rounded-lg focus:ring-4 focus:ring-blue-300 transition duration-300 ease-in-out transform">
+  Filter
+</button>
+
                     </div>
 
                     <div class="w-full sm:w-auto">
                         <a href="{{ route('admin.export', ['bulan' => request('bulan'), 'tahun' => request('tahun')]) }}"
-                           class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-300 inline-flex items-center transition duration-300 ease-in-out transform hover:scale-105">
+                           class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-300 inline-flex items-center transition duration-300 ease-in-out transform hover:scale-105">
                             <i class="fas fa-download mr-2"></i> Download Excel
                         </a>
                     </div>

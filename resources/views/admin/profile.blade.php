@@ -22,16 +22,19 @@
             <div class="flex items-center space-x-6 mb-8">
                 <div class="relative">
                     <!-- Profile Image -->
-                    <img id="profile-image" src="{{ auth()->user()->profile_image ? asset('storage/profile/' . auth()->user()->profile_image) : asset('images/default-profile.jpg') }}" 
+                    <img id="profile-image" 
+                         src="{{ auth()->user()->profile_image ? asset('storage/profile/' . auth()->user()->profile_image) : asset('images/default-profile.jpg') }}" 
                          alt="Admin Profile" class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg">
                     
                     <!-- Icon Button for Changing Profile Image -->
-<label for="profile_image_input" class="absolute bottom-0 right-0 bg-blue-900 text-white p-2 rounded-full cursor-pointer hover:bg-blue-700">
-    <i class="fas fa-camera text-1xl"></i> <!-- Camera Icon -->
-</label>
-
-
-                    <input type="file" id="profile_image_input" name="profile_image" accept="image/*" class="hidden" onchange="previewImage(event)">
+                    <form action="{{ route('admin.profile.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <input type="file" id="profile_image_input" name="profile_image" accept="image/*" class="hidden" onchange="this.form.submit()">
+                        <label for="profile_image_input" class="absolute bottom-0 right-0 bg-blue-900 text-white p-2 rounded-full cursor-pointer hover:bg-blue-700">
+                            <i class="fas fa-camera text-1xl"></i> <!-- Camera Icon -->
+                        </label>
+                    </form>
                 </div>
                 <div>
                     <h3 class="text-2xl font-semibold">{{ auth()->user()->name }}</h3>
@@ -97,4 +100,5 @@
         }
     }
 </script>
+
 @endsection

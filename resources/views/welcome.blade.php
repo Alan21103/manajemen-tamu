@@ -84,11 +84,11 @@
 <main id="home"
     class="max-w-[1200px] mx-auto px-6 mt-12 md:mt-20 flex flex-col md:flex-row items-center md:items-start justify-between gap-8 slide-in-left">
     <section class="max-w-md md:max-w-lg">
-        <h1 class="font-[Lora] text-5xl md:text-8xl leading-tight mb-6 text-[#1B254B] font-semibold transform transition-all duration-300 ease-in-out hover:scale-105 hover:text-[#151f3a] mt-12">
+        <h1 class="font-[Lora] text-4xl md:text-8xl leading-tight mb-6 text-[#1B254B] font-semibold transform transition-all duration-300 ease-in-out hover:scale-105 hover:text-[#151f3a] mt-12">
             Selamat Datang <span class="font-bold">di BPKP DIY</span>
         </h1>
-        <p class="text-[15px] text-gray-600 mb-6">
-            Selamat datang di website resmi Perwakilan BPKP Daerah Istimewa Yogyakarta. Di sini, Anda dapat mengakses berbagai informasi mengenai pengawasan keuangan dan pembangunan di wilayah DIY, serta memberikan penilaian atas pelayanan kami.
+        <p class="text-[20px] text-gray-600 mb-6">
+            Anda Memasuki Wilayah Bebas dari Korupsi (WBK) / Wilayah Birokrasi Bersih dan Melayani (WBBM)
         </p>
         <a href="{{ url('/form') }}">
             <button class="bg-[#1B254B] text-white font-semibold text-lg rounded-lg px-10 py-4 hover:bg-[#151f3a] transition-all duration-300 ease-in-out">
@@ -99,7 +99,7 @@
     <section class="flex-shrink-0 max-w-[320px] md:max-w-[400px] text-center">
         <h3 class="text-base font-semibold mb-3">Silakan Scan QR untuk Memberikan Penilaian</h3>
         <div class="w-full h-auto flex justify-center">
-            {!! QrCode::size(500)->generate('http://10.69.3.141:8000/rating/isi/1') !!}
+            {!! QrCode::size(500)->generate('http://10.200.6.50:8000/rating/isi/1') !!}
         </div>
     </section>
 </main>

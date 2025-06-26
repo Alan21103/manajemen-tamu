@@ -129,6 +129,21 @@
             <input type="checkbox" name="bidang[]" value="Sub Bagian" class="mr-2"> Sub Bagian
           </label>
           <label class="flex items-center">
+            <input type="checkbox" name="bidang[]" value="Bidang IPP" class="mr-2"> Bidang IPP
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" name="bidang[]" value="Bidang APD" class="mr-2"> Bidang APD
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" name="bidang[]" value="Bidang AN" class="mr-2"> Bidang AN
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" name="bidang[]" value="Bidang Investigasi" class="mr-2"> Bidang Investigasi
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" name="bidang[]" value="Bidang P3APIP" class="mr-2"> Bidang P3APIP
+          </label>
+          <label class="flex items-center">
             <input type="checkbox" id="lainnya-checkbox" onclick="toggleLainnyaInput()" class="mr-2"> Lainnya
           </label>
         </div>

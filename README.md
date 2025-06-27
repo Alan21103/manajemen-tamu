@@ -9,6 +9,8 @@
   <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+# Aplikasi Buku Tamu BPKP Perwakilan DIY
+
 ## Deskripsi
 
 Aplikasi **Buku Tamu BPKP Perwakilan DIY** berbasis **Laravel** yang memiliki berbagai fitur untuk pengelolaan data tamu, seperti:

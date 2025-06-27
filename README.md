@@ -1,61 +1,71 @@
+# Aplikasi Buku Tamu BPKP Perwakilan DIY
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+  <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+  <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+  <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Deskripsi
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Aplikasi **Buku Tamu BPKP Perwakilan DIY** berbasis **Laravel** yang memiliki berbagai fitur untuk pengelolaan data tamu, seperti:
+- **Scan Barcode** untuk identifikasi tamu.
+- **Rating** untuk menilai tamu berdasarkan pengalaman.
+- **Export ke Excel** untuk data tamu.
+- **CRUD Data Tamu** (Create, Read, Update, Delete).
+- **Grafik Statistik** untuk menampilkan data tamu dalam bentuk grafik.
+- **Filter Data** berdasarkan tahun, bulan, nama, dan instansi.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Fitur Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 1. **Login**
+   Halaman login untuk admin yang dapat mengelola aplikasi ini.
 
-## Learning Laravel
+   ![Login](https://github.com/user-attachments/assets/9f0efcf2-8629-45b0-a0cd-c58cedaa242e)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 2. **Landing Page**
+   Halaman utama aplikasi dengan footer yang informatif.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+   ![Landing footer](https://github.com/user-attachments/assets/e22a7d69-0d7b-48f0-a9a0-c02559536811)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 3. **Dashboard**
+   Menampilkan statistik jumlah tamu dan aktivitas terbaru.
 
-## Laravel Sponsors
+   ![Dashboard](https://github.com/user-attachments/assets/06ad1c08-f5af-4679-ab26-d5a00106080f)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 4. **Lihat Data Tamu**
+   Halaman untuk melihat data tamu yang telah tercatat.
 
-### Premium Partners
+   ![LihatData](https://github.com/user-attachments/assets/4bc44d76-c706-40ba-b850-eeb2c9322a91)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+### 5. **Export Data ke Excel**
+   Fitur untuk mengekspor data tamu ke dalam format file Excel.
 
-## Contributing
+   ![ExportData](https://github.com/user-attachments/assets/cbb23ecd-afca-477e-8e00-e4aece78af7d)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 6. **Tambah Data Tamu**
+   Halaman untuk menambah data tamu baru ke dalam sistem.
 
-## Code of Conduct
+   ![TambahData](https://github.com/user-attachments/assets/5234d5a5-6968-4d7c-8dc1-719e12bed7bb)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 7. **Profil Admin**
+   Halaman profil admin untuk mengelola pengaturan akun.
 
-## Security Vulnerabilities
+   ![ProfilAdmin](https://github.com/user-attachments/assets/29d12350-16c5-4d77-94d1-720276d41c84)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 8. **Landing Page**
+   Tampilan halaman depan aplikasi untuk pengguna tamu dan admin.
 
-## License
+   ![Landing](https://github.com/user-attachments/assets/aa4a146b-6fe6-4e90-a789-053912562aa3)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Teknologi yang Digunakan
+
+- **Laravel**: Framework PHP untuk membangun aplikasi ini.
+- **MySQL**: Database untuk menyimpan data tamu.
+- **QRCode**: Untuk menghasilkan barcode atau QR code.
+- **Excel Export**: Untuk ekspor data ke Excel.
+- **Charts**: Untuk menampilkan grafik statistik.
+

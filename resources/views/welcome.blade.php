@@ -99,7 +99,7 @@
     <section class="flex-shrink-0 max-w-[320px] md:max-w-[400px] text-center">
         <h3 class="text-base font-semibold mb-3">Silakan Scan QR untuk Memberikan Penilaian</h3>
         <div class="w-full h-auto flex justify-center">
-            {!! QrCode::size(500)->generate('http://10.200.6.50:8000/rating/isi/1') !!}
+            {!! QrCode::size(500)->generate('http://dhayohku.jogjadahsyat.id/rating/isi/1') !!}
         </div>
     </section>
 </main>
